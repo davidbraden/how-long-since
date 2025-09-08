@@ -1,5 +1,12 @@
 steps:
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', '.', 'gs://how-long-since-1970']
+    args:
+      - '-m'
+      - '-h'
+      - 'Cache-Control:public, max-age=60'
+      - 'rsync'
+      - '-r'
+      - '.'
+      - 'gs://how-long-since-1970'
 options:
   logging: CLOUD_LOGGING_ONLY
