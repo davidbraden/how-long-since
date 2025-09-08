@@ -1,0 +1,284 @@
+:root {
+    --primary-color: #4a90e2;
+    --background-color: #f4f7f6;
+    --text-color: #333;
+    --card-background: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --ahead-color: #34a853;
+    --due-color: #fbbc05;
+    --overdue-color: #ea4335;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 10px 5px 10px 15px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    color: #777;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+}
+
+.tab.active {
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-name {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    background: transparent;
+    border: 1px solid transparent;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    color: #777;
+}
+
+.tab.active .tab-name {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.tab-name:focus {
+    outline: none;
+    background: #fff;
+    border-color: #ccc;
+    cursor: text;
+}
+
+.tab-name-edit {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    color: #333;
+    background: #fff;
+    outline: none;
+}
+
+.delete-tab-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 8px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+    padding: 5px;
+    border-radius: 50%;
+    line-height: 1;
+}
+
+.tab:hover .delete-tab-btn {
+    visibility: visible;
+    opacity: 1;
+}
+.delete-tab-btn:hover {
+    background-color: #f0f0f0;
+}
+
+
+#add-tab-btn {
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+
+#item-list {
+    display: grid;
+    gap: 15px;
+}
+
+.item-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-background);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.item-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.item-diff {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: white;
+}
+
+.diff-ahead { background-color: var(--ahead-color); }
+.diff-due { background-color: var(--due-color); }
+.diff-overdue { background-color: var(--overdue-color); }
+
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 2rem;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-actions button, .danger-zone button {
+    flex-grow: 1;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#update-now-btn {
+    background-color: var(--ahead-color);
+    color: white;
+}
+
+#save-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.danger-zone {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+#delete-btn {
+    background-color: var(--overdue-color);
+    color: white;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    #app {
+        padding: 10px 10px 80px; /* Smaller padding on sides, more at bottom for FAB */
+    }
+
+    .fab {
+        bottom: 20px;
+        right: 20px;
+    }
+}
