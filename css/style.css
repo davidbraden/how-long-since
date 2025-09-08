@@ -1,19 +1,38 @@
 :root {
+    /* Brand Colors */
     --primary-color: #4a90e2;
-    --background-color: #f4f7f6;
-    --text-color: #333;
-    --card-background: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --primary-light-color: #7bb8f5;
+    --primary-dark-color: #2a65a9;
+    --secondary-color: #6c757d;
+    --secondary-light-color: #a1a7ad;
+    --secondary-dark-color: #494e53;
+
+    /* Status Colors */
     --ahead-color: #34a853;
     --due-color: #fbbc05;
     --overdue-color: #ea4335;
+
+    /* Text Colors */
+    --text-on-primary: #ffffff;
+    --text-on-secondary: #ffffff;
+    --text-color-primary: #333333;
+    --text-color-secondary: #555555;
+    --text-color-light: #777777;
+
+    /* UI Colors */
+    --background-color: #f4f7f6;
+    --card-background-color: #ffffff;
+    --border-color: #dddddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    /* System Font */
     --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
     font-family: var(--font-family);
     background-color: var(--background-color);
-    color: var(--text-color);
+    color: var(--text-color-primary);
     margin: 0;
     padding: 0;
 }
@@ -25,7 +44,7 @@ body {
 
 #app-bar {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--text-on-primary);
     padding: 10px 20px;
     box-shadow: 0 2px 4px var(--shadow-color);
 }
@@ -50,14 +69,14 @@ body {
     border: none;
     background: none;
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--primary-light-color);
     border-bottom: 3px solid transparent;
     transition: all 0.2s ease-in-out;
     position: relative;
 }
 
 .tab.active {
-    border-bottom-color: white;
+    border-bottom-color: var(--text-on-primary);
 }
 
 .tab-name {
@@ -68,36 +87,36 @@ body {
     border: 1px solid transparent;
     font-family: var(--font-family);
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--primary-light-color);
 }
 
 .tab.active .tab-name {
-    color: white;
+    color: var(--text-on-primary);
     font-weight: bold;
 }
 
 .tab-name:focus {
     outline: none;
-    background: #fff;
-    border-color: #ccc;
+    background: var(--card-background-color);
+    border-color: var(--border-color);
     cursor: text;
 }
 
 .tab-name-edit {
     padding: 5px;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     font-family: var(--font-family);
     font-size: 1rem;
-    color: #333;
-    background: #fff;
+    color: var(--text-color-primary);
+    background: var(--card-background-color);
     outline: none;
 }
 
 .delete-tab-btn {
     background: none;
     border: none;
-    color: #aaa;
+    color: var(--text-color-light);
     font-size: 1.2rem;
     cursor: pointer;
     margin-left: 8px;
@@ -114,7 +133,7 @@ body {
     opacity: 1;
 }
 .delete-tab-btn:hover {
-    background-color: #f0f0f0;
+    background-color: var(--primary-dark-color);
 }
 
 
@@ -122,7 +141,7 @@ body {
     padding: 10px 15px;
     font-size: 1.5rem;
     font-weight: bold;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--primary-light-color);
     cursor: pointer;
     border: none;
     background: none;
@@ -131,7 +150,7 @@ body {
 }
 
 #add-tab-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--primary-dark-color);
 }
 
 
@@ -144,7 +163,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--card-background);
+    background-color: var(--card-background-color);
     padding: 15px 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
@@ -163,23 +182,21 @@ body {
 }
 
 .item-diff {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 500;
     padding: 3px 10px; /* Adjusted padding for border */
     border-radius: 20px;
     border: 2px solid;
+    color: var(--text-color-primary);
 }
 
 .diff-ahead {
-    color: var(--ahead-color);
     border-color: var(--ahead-color);
 }
 .diff-due {
-    color: var(--due-color);
     border-color: var(--due-color);
 }
 .diff-overdue {
-    color: var(--overdue-color);
     border-color: var(--overdue-color);
 }
 
@@ -192,7 +209,7 @@ body {
     height: 60px;
     border-radius: 50%;
     background-color: var(--primary-color);
-    color: white;
+    color: var(--text-on-primary);
     font-size: 2rem;
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -218,7 +235,7 @@ body {
 }
 
 .modal-content {
-    background: white;
+    background: var(--card-background-color);
     padding: 30px;
     border-radius: 10px;
     width: 90%;
@@ -234,7 +251,7 @@ body {
     border: none;
     font-size: 2rem;
     cursor: pointer;
-    color: #aaa;
+    color: var(--text-color-light);
 }
 
 .form-group {
@@ -250,7 +267,7 @@ body {
 .form-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -272,24 +289,25 @@ body {
 }
 
 #update-now-btn {
-    background-color: var(--ahead-color);
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
+    border: none;
 }
 
 #save-btn {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary-light-color);
+    color: var(--text-on-primary);
 }
 
 .danger-zone {
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
 }
 
 #delete-btn {
-    background-color: var(--overdue-color);
-    color: white;
+    background-color: var(--secondary-light-color);
+    color: var(--text-color-primary);
     width: 100%;
 }
 

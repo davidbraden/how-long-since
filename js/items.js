@@ -21,6 +21,11 @@ const itemNameInput = document.getElementById('item-name');
 const lastSeenInput = document.getElementById('last-seen');
 const targetWeeksInput = document.getElementById('target-weeks');
 
+function formatWeeks(diff) {
+    const plural = Math.abs(diff) === 1 ? 'week' : 'weeks';
+    return `${diff} ${plural}`;
+}
+
 function renderItems() {
     itemListContainer.innerHTML = '';
     const activeCategory = getActiveCategory();
@@ -44,7 +49,7 @@ function renderItems() {
         card.dataset.itemId = item.id;
         card.querySelector('.item-name').textContent = item.name;
         const diffSpan = card.querySelector('.item-diff');
-        diffSpan.textContent = diff;
+        diffSpan.textContent = formatWeeks(diff);
         diffSpan.className = `item-diff ${diffClass}`;
 
         itemListContainer.appendChild(card);
