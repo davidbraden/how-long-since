@@ -5,6 +5,7 @@ import {
     deleteCategory,
     setActiveCategory,
 } from './data.js';
+import { cloneTemplate } from './utils.js';
 
 let renderCallback = () => {};
 
@@ -12,23 +13,18 @@ function renderTabs() {
     const { categories, activeCategoryId } = getState();
     const tabsContainer = document.getElementById('tabs');
     tabsContainer.innerHTML = '';
+
     categories.forEach(cat => {
-        const tab = document.createElement('div');
-        tab.className = `tab ${cat.id === activeCategoryId ? 'active' : ''}`;
+        const tab = cloneTemplate('tab-template').firstElementChild;
+        tab.classList.toggle('active', cat.id === activeCategoryId);
         tab.dataset.categoryId = cat.id;
 
-        const tabName = document.createElement('span');
+        const tabName = tab.querySelector('.tab-name');
         tabName.textContent = cat.name;
-        tabName.className = 'tab-name';
         tabName.dataset.categoryId = cat.id;
 
-        const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = '&times;';
-        deleteBtn.className = 'delete-tab-btn';
-        deleteBtn.dataset.categoryId = cat.id;
+        tab.querySelector('.delete-tab-btn').dataset.categoryId = cat.id;
 
-        tab.appendChild(tabName);
-        tab.appendChild(deleteBtn);
         tabsContainer.appendChild(tab);
     });
 

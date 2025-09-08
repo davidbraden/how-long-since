@@ -7,6 +7,7 @@ import {
     getTodayDateString,
     calculateDifference
 } from './data.js';
+import { cloneTemplate } from './utils.js';
 
 let renderCallback = () => {};
 
@@ -24,12 +25,12 @@ function renderItems() {
     itemListContainer.innerHTML = '';
     const activeCategory = getActiveCategory();
     if (!activeCategory) {
-        itemListContainer.innerHTML = '<p style="text-align: center; color: #777;">Add a category and items to get started!</p>';
+        itemListContainer.appendChild(cloneTemplate('no-category-message-template'));
         return;
     }
 
     if (activeCategory.items.length === 0) {
-        itemListContainer.innerHTML = '<p style="text-align: center; color: #777;">No items in this category. Click the "+" button to add one.</p>';
+        itemListContainer.appendChild(cloneTemplate('no-items-message-template'));
         return;
     }
 
@@ -39,13 +40,13 @@ function renderItems() {
         if (diff === 0) diffClass = 'diff-due';
         if (diff > 0) diffClass = 'diff-overdue';
 
-        const card = document.createElement('div');
-        card.className = 'item-card';
+        const card = cloneTemplate('item-card-template').firstElementChild;
         card.dataset.itemId = item.id;
-        card.innerHTML = `
-            <span class="item-name">${item.name}</span>
-            <span class="item-diff ${diffClass}">${diff}</span>
-        `;
+        card.querySelector('.item-name').textContent = item.name;
+        const diffSpan = card.querySelector('.item-diff');
+        diffSpan.textContent = diff;
+        diffSpan.className = `item-diff ${diffClass}`;
+
         itemListContainer.appendChild(card);
     });
 }
