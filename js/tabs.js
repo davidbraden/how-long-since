@@ -41,29 +41,46 @@ function renderTabs() {
 function setupTabEventListeners() {
     const tabsContainer = document.getElementById('tabs');
     let pressTimer = null;
+    let isEditing = false;
 
-    tabsContainer.addEventListener('mousedown', e => {
+    const handlePressStart = (e) => {
         if (e.target.matches('.tab-name')) {
+            isEditing = false; // Reset on new press
             pressTimer = setTimeout(() => {
+                isEditing = true;
                 activateTabEdit(e.target);
             }, 500); // 500ms for long press
         }
-    });
+    };
 
-    tabsContainer.addEventListener('mouseup', () => {
+    const cancelPress = () => {
         clearTimeout(pressTimer);
-    });
+    };
 
-    tabsContainer.addEventListener('mouseleave', () => {
-        clearTimeout(pressTimer);
+    // Mouse events for long press
+    tabsContainer.addEventListener('mousedown', handlePressStart);
+    tabsContainer.addEventListener('mouseup', cancelPress);
+    tabsContainer.addEventListener('mouseleave', cancelPress);
+
+    // Touch events for long press
+    tabsContainer.addEventListener('touchstart', handlePressStart);
+    tabsContainer.addEventListener('touchend', cancelPress);
+    tabsContainer.addEventListener('touchmove', cancelPress); // Cancel if user starts scrolling
+
+    // Prevent context menu on long press
+    tabsContainer.addEventListener('contextmenu', e => {
+        if (e.target.matches('.tab-name-edit')) {
+            e.preventDefault();
+        }
     });
 
     tabsContainer.addEventListener('click', e => {
         if (e.target.matches('#add-tab-btn')) {
-            const newName = prompt('Enter new category name:');
-            if (newName && newName.trim()) {
-                addCategory(newName.trim());
-                renderCallback();
+            const newCategory = addCategory('New Category');
+            renderCallback();
+            const newTabSpan = tabsContainer.querySelector(`.tab-name[data-category-id="${newCategory.id}"]`);
+            if (newTabSpan) {
+                activateTabEdit(newTabSpan);
             }
         } else if (e.target.matches('.delete-tab-btn')) {
             const categoryId = e.target.dataset.categoryId;
@@ -73,7 +90,8 @@ function setupTabEventListeners() {
             }
         } else {
             const tab = e.target.closest('.tab');
-            if (tab && !tab.querySelector('input')) {
+            // Only set active category on click if we are not in the process of editing
+            if (tab && !isEditing) {
                 setActiveCategory(tab.dataset.categoryId);
                 renderCallback();
             }

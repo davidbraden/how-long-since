@@ -73,6 +73,7 @@ export function addCategory(name) {
         AppState.activeCategoryId = newCategory.id;
     }
     saveState();
+    return newCategory;
 }
 
 export function updateCategory(id, newName) {

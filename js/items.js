@@ -117,6 +117,7 @@ function setupItemEventListeners() {
 
     document.getElementById('update-now-btn').addEventListener('click', () => {
         lastSeenInput.value = getTodayDateString();
+        form.requestSubmit();
     });
 
     document.getElementById('delete-btn').addEventListener('click', () => {
