@@ -165,19 +165,29 @@ body {
 .item-diff {
     font-size: 1.2rem;
     font-weight: bold;
-    padding: 5px 12px;
+    padding: 3px 10px; /* Adjusted padding for border */
     border-radius: 20px;
-    color: white;
+    border: 2px solid;
 }
 
-.diff-ahead { background-color: var(--ahead-color); }
-.diff-due { background-color: var(--due-color); }
-.diff-overdue { background-color: var(--overdue-color); }
+.diff-ahead {
+    color: var(--ahead-color);
+    border-color: var(--ahead-color);
+}
+.diff-due {
+    color: var(--due-color);
+    border-color: var(--due-color);
+}
+.diff-overdue {
+    color: var(--overdue-color);
+    border-color: var(--overdue-color);
+}
 
 .fab {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 60px;
     height: 60px;
     border-radius: 50%;
