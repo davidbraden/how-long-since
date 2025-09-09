@@ -1,11 +1,8 @@
 :root {
     /* Brand Colors */
-    --primary-color: #4a90e2;
-    --primary-light-color: #7bb8f5;
-    --primary-dark-color: #2a65a9;
-    --secondary-color: #6c757d;
-    --secondary-light-color: #a1a7ad;
-    --secondary-dark-color: #494e53;
+    --primary-color: #009688;
+    --primary-light-color: #e0f2f1;
+    --primary-dark-color: #00695c;
 
     /* Status Colors */
     --ahead-color: #34a853;
@@ -14,10 +11,7 @@
 
     /* Text Colors */
     --text-on-primary: #ffffff;
-    --text-on-secondary: #ffffff;
     --text-color-primary: #333333;
-    --text-color-secondary: #555555;
-    --text-color-light: #777777;
 
     /* UI Colors */
     --background-color: #f4f7f6;
@@ -116,7 +110,7 @@ body {
 .delete-tab-btn {
     background: none;
     border: none;
-    color: var(--text-color-light);
+    color: var(--text-on-primary);
     font-size: 1.2rem;
     cursor: pointer;
     margin-left: 8px;
@@ -251,7 +245,7 @@ body {
     border: none;
     font-size: 2rem;
     cursor: pointer;
-    color: var(--text-color-light);
+    color: var(--text-color-primary);
 }
 
 .form-group {
@@ -295,7 +289,7 @@ body {
 }
 
 #save-btn {
-    background-color: var(--primary-light-color);
+    background-color: var(--primary-color);
     color: var(--text-on-primary);
 }
 
@@ -306,7 +300,7 @@ body {
 }
 
 #delete-btn {
-    background-color: var(--secondary-light-color);
+    background-color: var(--primary-light-color);
     color: var(--text-color-primary);
     width: 100%;
 }
