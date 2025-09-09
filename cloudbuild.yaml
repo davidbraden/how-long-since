@@ -7,6 +7,6 @@ steps:
       - 'rsync'
       - '-r'
       - '.'
-      - 'gs://how-long-since-1970'
+      - 'gs://how-long-since.deb.dedyn.io'
 options:
   logging: CLOUD_LOGGING_ONLY

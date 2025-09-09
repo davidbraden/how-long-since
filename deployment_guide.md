@@ -17,7 +17,7 @@ First, you need a new project to house your resources.
 
 1.  **Choose a unique Project ID.** This ID must be globally unique. Replace `how-long-since-your-unique-id` with your choice.
     ```bash
-    export PROJECT_ID="how-long-since-your-unique-id"
+    export PROJECT_ID="how-long-since-1970"
     ```
 
 2.  **Create the new project:**
